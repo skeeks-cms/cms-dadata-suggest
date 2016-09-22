@@ -2,7 +2,7 @@
 	"name": "skeeks/cms-dadata-suggest",
 	"description": "Работа с подсказками dadata.ru for SkeekS CMS",
 	"keywords": ["yii", "skeeks", "framework", "component", "dadata", "suggest"],
-  "homepage": "http://cms.skeeks.com/",
+    "homepage": "http://cms.skeeks.com/",
 	"type": "yii2-extension",
 	"license": "GPL-3.0+",
 	"support": {
@@ -17,7 +17,8 @@
 		}
 	],
 	"require": {
-		"skeeks/cms": "*"
+		"skeeks/cms": "*",
+	  	"skeeks/yii2-dadata-suggest-api": "*"
 	},
     "autoload": {
         "psr-4": {
