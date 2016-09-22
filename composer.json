@@ -1,0 +1,27 @@
+{
+	"name": "skeeks/cms-dadata-suggest",
+	"description": "Работа с подсказками dadata.ru for SkeekS CMS",
+	"keywords": ["yii", "skeeks", "framework", "component", "dadata", "suggest"],
+  "homepage": "http://cms.skeeks.com/",
+	"type": "yii2-extension",
+	"license": "GPL-3.0+",
+	"support": {
+        "issues": "http://skeeks.com/",
+        "wiki": "http://en.cms.skeeks.com/docs/",
+        "source": "https://github.com/skeeks-cms/cms-dadata-suggest"
+    },
+	"authors": [
+		{
+			"name": "Semenov Alexander",
+			"email": "semenov@skeeks.com"
+		}
+	],
+	"require": {
+		"skeeks/cms": "*"
+	},
+    "autoload": {
+        "psr-4": {
+            "skeeks\\cms\\dadataSuggest\\": ""
+        }
+    }
+}
