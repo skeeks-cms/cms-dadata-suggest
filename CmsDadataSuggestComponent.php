@@ -9,6 +9,7 @@ namespace skeeks\cms\dadataSuggest;
 use skeeks\cms\base\Component;
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\widgets\ActiveForm;
 
 /**
  * Class CmsAgentComponent
@@ -20,6 +21,17 @@ class CmsDadataSuggestComponent extends Component
      * @var string
      */
     public $authorization_token   = '';
+
+    /**
+     * @return array
+     */
+    static public function descriptorConfig()
+    {
+        return array_merge(parent::descriptorConfig(), [
+            'name'          => \Yii::t('skeeks/dadata-suggest', 'Service tips dadata.ru'),
+        ]);
+    }
+
 
     public function rules()
     {
@@ -38,7 +50,7 @@ class CmsDadataSuggestComponent extends Component
     public function attributeHints()
     {
         return ArrayHelper::merge(parent::attributeHints(), [
-            'robotsContent' => \Yii::t('skeeks/dadata-suggest', 'https://dadata.ru/api/'),
+            'authorization_token' => \Yii::t('skeeks/dadata-suggest', 'https://dadata.ru/api/'),
         ]);
     }
 
@@ -51,5 +63,35 @@ class CmsDadataSuggestComponent extends Component
         echo $form->fieldSetEnd();
     }
 
+
+    /**
+     * @var string
+     */
+    public $sessionName = 'datataSuggest';
+
+    /**
+     * @return array
+     */
+    public function getAddress()
+    {
+        $dataFromSession = \Yii::$app->session->get($this->sessionName);
+        if ($dataFromSession)
+        {
+            \Yii::info('Address from session', self::className());
+            return $dataFromSession;
+        }
+
+        $response = \Yii::$app->dadataSuggestApi->detectAddressByIp(\Yii::$app->request->userIP);
+
+        if ($response->isOk)
+        {
+            \Yii::info('Address from api', self::className());
+            $data = ArrayHelper::getValue($response->data, 'location');
+            \Yii::$app->session->set($this->sessionName, $data);
+            return $data;
+        }
+
+        return [];
+    }
 
 }

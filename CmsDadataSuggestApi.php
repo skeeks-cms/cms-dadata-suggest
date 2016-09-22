@@ -12,6 +12,8 @@ use Yii;
 use yii\helpers\ArrayHelper;
 
 /**
+ *  @property array $address
+ *
  * Class CmsAgentComponent
  * @package skeeks\cms\agent
  */
