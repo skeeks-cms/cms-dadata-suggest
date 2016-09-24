@@ -12,6 +12,7 @@ use yii\base\Widget;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Json;
+use yii\helpers\Url;
 use yii\web\JsExpression;
 use yii\widgets\InputWidget;
 
@@ -26,6 +27,7 @@ class DadataSuggestInputWidget extends InputWidget
         parent::init();
 
         $this->options['id'] = $this->id;
+
         $this->clientOptions = ArrayHelper::merge([
             'serviceUrl' => \Yii::$app->dadataSuggestApi->baseUrl . "/rs",
             'token' => \Yii::$app->dadataSuggestApi->authorization_token,
@@ -58,8 +60,15 @@ JS
         $id = $this->id;
 
         $jsOptions = Json::encode($this->clientOptions);
+        $jsGlobalOptions = Json::encode([
+            'backend' => Url::to('/dadataSuggest/backend/save-address')
+        ]);
         $this->view->registerJs(<<<JS
 $("#{$id}").suggestions({$jsOptions});
+(function(sx, $, _)
+{
+    sx.DadataSuggest = new sx.classes.DadataSuggest({$jsGlobalOptions});
+})(sx, sx.$, sx._);
 JS
 );
     }

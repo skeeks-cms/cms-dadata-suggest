@@ -20,6 +20,7 @@ class DadataSuggestWidgetAsset extends AssetBundle
     public $js = [
         'https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js',
         'https://cdn.jsdelivr.net/jquery.suggestions/16.6/js/jquery.suggestions.min.js',
+        'app.js',
     ];
 
     public $depends = [

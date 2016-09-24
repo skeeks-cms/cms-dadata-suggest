@@ -7,11 +7,14 @@
  */
 namespace skeeks\cms\dadataSuggest;
 use skeeks\cms\base\Component;
+use skeeks\yii2\dadataSuggestApi\helpers\SuggestAddressModel;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
 /**
+ * @property SuggestAddressModel $address
+ *
  * Class CmsAgentComponent
  * @package skeeks\cms\agent
  */
@@ -69,16 +72,24 @@ class CmsDadataSuggestComponent extends Component
      */
     public $sessionName = 'datataSuggest';
 
+    private $_address = null;
+
     /**
-     * @return array
+     * @return null|SuggestAddressModel
      */
     public function getAddress()
     {
+        if ($this->_address !== null)
+        {
+            return $this->_address;
+        }
+
         $dataFromSession = \Yii::$app->session->get($this->sessionName);
         if ($dataFromSession)
         {
             \Yii::info('Address from session', self::className());
-            return $dataFromSession;
+            $this->_address = new SuggestAddressModel($dataFromSession);
+            return $this->_address;
         }
 
         $response = \Yii::$app->dadataSuggestApi->detectAddressByIp(\Yii::$app->request->userIP);
@@ -87,11 +98,25 @@ class CmsDadataSuggestComponent extends Component
         {
             \Yii::info('Address from api', self::className());
             $data = ArrayHelper::getValue($response->data, 'location');
-            \Yii::$app->session->set($this->sessionName, $data);
-            return $data;
+            $this->saveAddress($data);
+
+            $this->_address = new SuggestAddressModel($data);
+
+            return $this->_address;
         }
 
-        return [];
+        return null;
     }
 
+    /**
+     * Сохранение определенных данных
+     *
+     * @param array $data данные полученные из api dadata
+     * @return $this
+     */
+    public function saveAddress($data = [])
+    {
+        \Yii::$app->session->set($this->sessionName, $data);
+        return $this;
+    }
 }
