@@ -44,12 +44,12 @@
 .suggestions-suggestion:hover {
     background-color: #f7f7f7!important
 }
-.suggestions-addon[data-addon-type=clear] {
+/*.suggestions-addon[data-addon-type=clear] {
     background: url(../img/clear.png) 50% 50% no-repeat!important
 }
 .suggestions-addon[data-addon-type=clear]:hover {
     opacity: .7!important
-}
+}*/
 @media (max-width: 980px) {
     .suggestions-suggestions {
         margin-top: 0!important

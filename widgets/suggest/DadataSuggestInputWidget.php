@@ -22,23 +22,41 @@ class DadataSuggestInputWidget extends InputWidget
 
     public $clientOptions = [];
 
+    public $type    = 'ADDRESS';
+    public $count   = 10;
+    public $hint    = '';
+    /**
+     * @var string
+     */
+    public $addon    = ''; //clear
+
     public function init()
     {
         parent::init();
 
-        $this->options['id'] = $this->id;
-        $this->clientOptions['id'] = $this->id;
+        //$this->options['id'] = $this->id;
+        Html::addCssClass($this->options, ['form-control']);
+
+        $this->clientOptions['id'] = $this->options['id'];
         $this->clientOptions['backend'] = Url::to('/dadataSuggest/backend/save-address');
+
+        if ($this->hint)
+        {
+            $this->clientOptions['suggestOptions']['hint'] = $this->hint;
+        }
+
+        if ($this->addon)
+        {
+            $this->clientOptions['suggestOptions']['addon'] = $this->addon;
+        }
 
         $this->clientOptions = ArrayHelper::merge([
             'suggestOptions' =>
             [
-                'serviceUrl' => \Yii::$app->dadataSuggestApi->baseUrl . "/rs",
-                'token' => \Yii::$app->dadataSuggestApi->authorization_token,
-                'type' => "ADDRESS",
-                'count' => 10,
-                'addon' => 'clear',
-                'hint' => 'Вот что мы нашли',
+                'serviceUrl'    => \Yii::$app->dadataSuggestApi->baseUrl . "/rs",
+                'token'         => \Yii::$app->dadataSuggestApi->authorization_token,
+                'type'          => $this->type,
+                'count'         => $this->count,
             ]
 
         ], $this->clientOptions);
@@ -55,8 +73,6 @@ class DadataSuggestInputWidget extends InputWidget
         }
 
         DadataSuggestWidgetAsset::register($this->view);
-
-        $id = $this->id;
 
         $jsOptions = Json::encode($this->clientOptions);
 
