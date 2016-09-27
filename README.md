@@ -1,6 +1,11 @@
 Dadata suggest for SkeekS CMS
 ===================================
 
+Info
+------------
+* https://github.com/skeeks-semenov/yii2-dadata-suggest-api
+* https://dadata.ru/api/suggest/
+
 Installation
 ------------
 
@@ -58,7 +63,7 @@ Configuration app
 * [Web site](http://en.cms.skeeks.com)
 * [Web site (rus)](http://cms.skeeks.com)
 * [Author](http://skeeks.com)
-* [ChangeLog](https://github.com/skeeks-cms/cms-agent/blob/master/CHANGELOG.md)
+* [ChangeLog](https://github.com/skeeks-cms/cms-dadata-suggest/blob/master/CHANGELOG.md)
 
 
 ___
