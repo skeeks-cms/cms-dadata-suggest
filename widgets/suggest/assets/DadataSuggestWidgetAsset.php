@@ -14,13 +14,13 @@ class DadataSuggestWidgetAsset extends AssetBundle
     public $sourcePath = '@skeeks/cms/dadataSuggest/widgets/suggest/assets/src';
 
     public $css = [
-        'https://cdn.jsdelivr.net/jquery.suggestions/16.6/css/suggestions.css',
+        'plugins/suggestions/16.6/suggestions.css',
         'css/dadata-suggest-theme.css'
     ];
 
     public $js = [
-        'https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js',
-        'https://cdn.jsdelivr.net/jquery.suggestions/16.6/js/jquery.suggestions.min.js',
+        'plugins/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js',
+        'plugins/suggestions/16.6/jquery.suggestions.min.js',
         'js/dadata-suggest.js',
     ];
 
