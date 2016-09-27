@@ -1,4 +1,4 @@
-Agents for SkeekS CMS
+Dadata suggest for SkeekS CMS
 ===================================
 
 Installation
@@ -9,13 +9,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist skeeks/cms-agent "*"
+php composer.phar require --prefer-dist skeeks/cms-dadata-suggest "*"
 ```
 
 or add
 
 ```
-"skeeks/cms-agent": "*"
+"skeeks/cms-dadata-suggest": "*"
 ```
 
 Configuration app
@@ -23,62 +23,35 @@ Configuration app
 
 ```php
 
-'bootstrap' => ['cmsAgent'],
-
 'components' =>
 [
-    'cmsAgent' => [
-        'class'             => 'skeeks\cms\agent\CmsAgentComponent',
-        'onHitsEnabled'     => true
+    'dadataSuggest' => [
+        'class'             => 'skeeks\cms\dadataSuggest\CmsDadataSuggestComponent',
     ],
-
+    'dadataSuggestApi' => [
+        'class'             => 'skeeks\cms\dadataSuggest\CmsDadataSuggestApi',
+    ],
     'i18n' => [
         'translations' =>
         [
-            'skeeks/agent' => [
+            'skeeks/dadata-suggest' => [
                 'class'             => 'yii\i18n\PhpMessageSource',
-                'basePath'          => '@skeeks/cms/agent/messages',
+                'basePath'          => '@skeeks/cms/dadataSuggest/messages',
                 'fileMap' => [
-                    'skeeks/agent' => 'main.php',
+                    'skeeks/dadata-suggest' => 'main.php',
                 ],
             ]
         ]
     ]
 ],
-
 'modules' =>
 [
-    'cmsAgent' => [
-        'class'         => 'skeeks\cms\agent\CmsAgentModule',
+    'dadataSuggest' => [
+        'class'         => 'skeeks\cms\dadataSuggest\CmsDadataSuggestModule',
     ]
 ]
 
 ```
-
-How to enable execution on cron agents
-----------------
-
-#### Configuration app
-
-```php
-
-'components' =>
-[
-    'cmsAgent' => [
-        'class'             => 'skeeks\cms\agent\CmsAgentComponent',
-        'onHitsEnabled'     => false
-    ],
-]
-
-```
-
-#### Cront task
-
-```bash
-* * * * * cd /var/www/sites/you-site.com/ && php yii cmsAgent/execute
-```
-
-
 
 
 ##Links
