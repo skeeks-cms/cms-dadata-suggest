@@ -13,6 +13,7 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
 /**
+ * @property bool $isSavedAddress
  * @property SuggestAddressModel $address
  *
  * Class CmsAgentComponent
@@ -118,5 +119,14 @@ class CmsDadataSuggestComponent extends Component
     {
         \Yii::$app->session->set($this->sessionName, $data);
         return $this;
+    }
+
+    /**
+     * Адрес сохранен в сессии?
+     * @return bool
+     */
+    public function getIsSavedAddress()
+    {
+        return \Yii::$app->session->has($this->sessionName);
     }
 }

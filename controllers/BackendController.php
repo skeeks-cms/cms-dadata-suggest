@@ -30,4 +30,22 @@ class BackendController extends Controller
 
         return $rr;
     }
+
+    /**
+     * @return RequestResponse
+     */
+    public function actionGetAddress()
+    {
+        $rr = new RequestResponse();
+
+        $rr->data       = [
+            'geoobject' => \Yii::$app->dadataSuggest->address,
+            'unrestrictedValue' => \Yii::$app->dadataSuggest->address->unrestrictedValue,
+            'regionString' => \Yii::$app->dadataSuggest->address->regionString,
+            'shortAddressString' => \Yii::$app->dadataSuggest->address->shortAddressString,
+        ];
+        $rr->success    = true;
+
+        return $rr;
+    }
 }
