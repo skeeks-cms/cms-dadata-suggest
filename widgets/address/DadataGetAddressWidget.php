@@ -25,6 +25,11 @@ class DadataGetAddressWidget extends Widget
 
     public $content = '';
 
+    /**
+     * @var bool
+     */
+    public $isStandart = true;
+
     public $notSavedAddress = 'Выбрать регион';
 
     public function init()
@@ -38,6 +43,8 @@ class DadataGetAddressWidget extends Widget
 
     public function run()
     {
+        if ($this->isStandart)
+        {
             if (\Yii::$app->dadataSuggest->isSavedAddress)
             {
                 echo \Yii::$app->dadataSuggest->address->unrestrictedValue;
@@ -51,12 +58,13 @@ class DadataGetAddressWidget extends Widget
                 $this->view->registerJs(<<<JS
     sx.DadataGetAjaxAddress.bind('update', function(e, data)
     {
-        console.log(data);
         $("#{$this->id}").empty().append(data.unrestrictedValue);
     });
 JS
-);
+    );
             }
+        }
+
 
         echo Html::endTag($this->tag);
     }

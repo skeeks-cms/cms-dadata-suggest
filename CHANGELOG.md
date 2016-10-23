@@ -1,6 +1,10 @@
 CHANGELOG
 ==============
 
+1.0.0-rc3
+-----------------
+  * Updated widgets
+
 1.0.0-rc2
 -----------------
   * Added some widgets
