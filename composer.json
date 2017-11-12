@@ -17,7 +17,7 @@
 		}
 	],
 	"require": {
-		"skeeks/cms": "~4",
+		"skeeks/cms": "~5.0.0 || dev-master",
 	  	"skeeks/yii2-dadata-suggest-api": "*"
 	},
     "autoload": {
