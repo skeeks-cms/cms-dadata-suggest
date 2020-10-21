@@ -58,14 +58,14 @@ class CmsDadataSuggestComponent extends Component
         ]);
     }
 
-    public function renderConfigForm(ActiveForm $form)
+    public function getConfigFormFields()
     {
-        echo $form->fieldSet(\Yii::t('skeeks/dadata-suggest', 'Settings'));
-
-            echo $form->field($this, 'authorization_token');
-
-        echo $form->fieldSetEnd();
+        return [
+            'authorization_token'
+        ];
     }
+
+
 
 
     /**
