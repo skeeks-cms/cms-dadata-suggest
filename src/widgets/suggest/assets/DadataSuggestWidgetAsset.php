@@ -8,6 +8,7 @@
 namespace skeeks\cms\dadataSuggest\widgets\suggest\assets;
 
 use skeeks\cms\base\AssetBundle;
+use skeeks\sx\assets\Core;
 
 class DadataSuggestWidgetAsset extends AssetBundle
 {
@@ -26,6 +27,7 @@ class DadataSuggestWidgetAsset extends AssetBundle
 
     public $depends = [
         'yii\web\YiiAsset',
+        Core::class,
     ];
 
 }
