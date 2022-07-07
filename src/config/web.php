@@ -1,2 +1,9 @@
 <?php
-return [];
+return [
+    'modules' =>
+    [
+        'dadataSuggest' => [
+            'class'         => 'skeeks\cms\dadataSuggest\CmsDadataSuggestModule',
+        ]
+    ]
+];
