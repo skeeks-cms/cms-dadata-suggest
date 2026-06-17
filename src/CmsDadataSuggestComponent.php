@@ -6,6 +6,7 @@
  * @date 22.09.2016
  */
 namespace skeeks\cms\dadataSuggest;
+use skeeks\cms\assets\CmsAsset;
 use skeeks\cms\base\Component;
 use skeeks\yii2\dadataSuggestApi\helpers\SuggestAddressModel;
 use Yii;
@@ -33,6 +34,10 @@ class CmsDadataSuggestComponent extends Component
     {
         return array_merge(parent::descriptorConfig(), [
             'name'          => \Yii::t('skeeks/dadata-suggest', 'Service tips dadata.ru'),
+            'image'         => [
+                CmsAsset::class,
+                'images/icons/admin-menu/dadata.svg'
+            ],
         ]);
     }
 
